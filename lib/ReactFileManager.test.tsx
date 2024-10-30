@@ -5,7 +5,7 @@ import type { FileSystemType } from ".";
 import { ReactFileManager } from ".";
 
 export const dummyFileSystem: FileSystemType = [
-  { id: "0", name: "/", path: "/", isDir: true },
+  { id: "0", name: "/", path: "/", isRoot:true, isDir: true },
   {
     id: "31258",
     name: "report.pdf",

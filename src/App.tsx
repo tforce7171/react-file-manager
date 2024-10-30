@@ -5,8 +5,7 @@ import "./App.css";
 import "../lib/tailwind.css";
 
 export const dummyFileSystem: FileSystemType = [
-  { id: "0", name: "/", path: "/", isDir: true },
-  {
+  { id: "0", name: "/", path: "/", isRoot:true, isDir: true },  {
     id: "31258",
     name: "report.pdf",
     isDir: false,
@@ -111,12 +110,13 @@ function App() {
   };
 
 
-  const dummyUpload = async (uploadedFileData: any, currentFolder: string): Promise<void> => {
+  const dummyUpload = async (uploadedFileData: File, currentFolder: string): Promise<boolean> => {
     // Simulating a file upload
     console.log(`Uploading file: ${uploadedFileData} to folder: ${currentFolder}`);
     await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulating upload delay
+    return true;
   };
-  
+
   return (
     <>
     <button className="switch-mode-btn" onClick={toggleTheme}>Switch mode</button>
