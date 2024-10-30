@@ -73,6 +73,8 @@ const getInitialTheme = (): Theme => {
   return Theme.Light; // light theme as the default;
 };
 
+// create a async function called dummyUpload
+
 
 function App() {
   const [theme, setTheme] = React.useState<Theme>(getInitialTheme);
@@ -96,12 +98,35 @@ function App() {
     rawSetTheme(theme);
   }, [theme]);
 
+  const dummyDoubleClick = async (): Promise<void> => {
+    console.log(`double click`);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    return;
+  };
 
+  const dummyRefresh = async (): Promise<void> => {
+    console.log(`refresh`);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    return;
+  };
+
+
+  const dummyUpload = async (uploadedFileData: any, currentFolder: string): Promise<void> => {
+    // Simulating a file upload
+    console.log(`Uploading file: ${uploadedFileData} to folder: ${currentFolder}`);
+    await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulating upload delay
+  };
+  
   return (
     <>
     <button className="switch-mode-btn" onClick={toggleTheme}>Switch mode</button>
     <div className="container">
-      <ReactFileManager fs={dummyFileSystem} />
+      <ReactFileManager
+        fs={dummyFileSystem}
+        onDoubleClick={dummyDoubleClick}
+        onRefresh={dummyRefresh}
+        onUpload={dummyUpload}
+      />
     </div>
     </>
   );
