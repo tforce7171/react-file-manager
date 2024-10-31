@@ -2,8 +2,8 @@
 React File Manager | MIT License | https://github.com/thelicato/react-file-manager
 */
 
-@tailwind base;
-@tailwind components;
+/* @tailwind base;
+@tailwind components; */
 @tailwind utilities;
 
 @layer utilities {
