@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import Workspace from "../components/Workspace";
-import { ViewStyle } from "./Enums";
-import type { FileType, Labels } from "./Types";
-import { FileManagerContext } from "../context/FileManagerContext";
+import Navbar from "./components/Navbar";
+import Workspace from "./components/Workspace";
+import { ViewStyle } from "./types/Enums";
+import type { FileType, Labels } from "./types/Types";
+import { FileManagerContext } from "./context/FileManagerContext";
 
 interface IFileManagerProps {
   fs: FileType[];
