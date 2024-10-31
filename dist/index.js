@@ -1,11 +1,4 @@
-// lib/types/Enums.ts
-var ViewStyle = /* @__PURE__ */ ((ViewStyle2) => {
-  ViewStyle2["List"] = "list";
-  ViewStyle2["Icons"] = "icons";
-  return ViewStyle2;
-})(ViewStyle || {});
-
-// lib/types/ReactFileManager.tsx
+// lib/ReactFileManager.tsx
 import React13, { useState as useState4 } from "react";
 
 // lib/components/Navbar.tsx
@@ -648,7 +641,14 @@ var Workspace = () => {
 };
 var Workspace_default = Workspace;
 
-// lib/types/ReactFileManager.tsx
+// lib/types/Enums.ts
+var ViewStyle = /* @__PURE__ */ ((ViewStyle2) => {
+  ViewStyle2["List"] = "list";
+  ViewStyle2["Icons"] = "icons";
+  return ViewStyle2;
+})(ViewStyle || {});
+
+// lib/ReactFileManager.tsx
 var ReactFileManager = ({
   fs,
   viewOnly,

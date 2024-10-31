@@ -3,6 +3,8 @@
     "declaration": true,
     "newLine": "lf",
     "pretty": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "./dist",
     "outDir": "./dist",
     "target": "ESNext",
     "useDefineForClassFields": true,

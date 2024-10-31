@@ -35,14 +35,7 @@ __export(lib_exports, {
 });
 module.exports = __toCommonJS(lib_exports);
 
-// lib/types/Enums.ts
-var ViewStyle = /* @__PURE__ */ ((ViewStyle2) => {
-  ViewStyle2["List"] = "list";
-  ViewStyle2["Icons"] = "icons";
-  return ViewStyle2;
-})(ViewStyle || {});
-
-// lib/types/ReactFileManager.tsx
+// lib/ReactFileManager.tsx
 var import_react14 = __toESM(require("react"), 1);
 
 // lib/components/Navbar.tsx
@@ -685,7 +678,14 @@ var Workspace = () => {
 };
 var Workspace_default = Workspace;
 
-// lib/types/ReactFileManager.tsx
+// lib/types/Enums.ts
+var ViewStyle = /* @__PURE__ */ ((ViewStyle2) => {
+  ViewStyle2["List"] = "list";
+  ViewStyle2["Icons"] = "icons";
+  return ViewStyle2;
+})(ViewStyle || {});
+
+// lib/ReactFileManager.tsx
 var ReactFileManager = ({
   fs,
   viewOnly,

@@ -44,11 +44,6 @@ interface Labels {
     cancel: string;
 }
 
-declare enum ViewStyle {
-    List = "list",
-    Icons = "icons"
-}
-
 interface IFileManagerProps {
     fs: FileType[];
     viewOnly?: boolean;
@@ -62,6 +57,11 @@ interface IFileManagerProps {
 }
 declare const ReactFileManager: React.FC<IFileManagerProps>;
 
+declare enum ViewStyle {
+    List = "list",
+    Icons = "icons"
+}
+
 type FileSystemType = FileType[];
 
-export { FileSystemType, FileType, IFileManagerProps, Labels, ReactFileManager, ViewStyle };
+export { FileSystemType, FileType, IFileManagerProps, ReactFileManager, ViewStyle };
