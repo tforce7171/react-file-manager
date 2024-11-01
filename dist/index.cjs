@@ -31,7 +31,8 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var lib_exports = {};
 __export(lib_exports, {
   ReactFileManager: () => ReactFileManager,
-  ViewStyle: () => ViewStyle
+  ViewStyle: () => ViewStyle,
+  useFileManager: () => useFileManager
 });
 module.exports = __toCommonJS(lib_exports);
 
@@ -747,5 +748,6 @@ var ReactFileManager = ({
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   ReactFileManager,
-  ViewStyle
+  ViewStyle,
+  useFileManager
 });

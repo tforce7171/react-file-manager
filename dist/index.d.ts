@@ -62,6 +62,25 @@ declare enum ViewStyle {
     Icons = "icons"
 }
 
+interface FileManagerContextType {
+    fs: FileType[];
+    labels: Labels;
+    viewStyle: ViewStyle;
+    setViewStyle: (style: ViewStyle) => void;
+    viewOnly?: boolean;
+    currentFolder: string;
+    setCurrentFolder: (folderId: string) => void;
+    onDoubleClick?: (id: string) => void;
+    onRefresh?: (id: string) => Promise<void>;
+    onUpload?: (file: File, folderId: string) => Promise<boolean>;
+    onCreateFolder?: (name: string, ref: HTMLInputElement) => Promise<boolean>;
+    onDelete?: (id: string) => void;
+    onRename?: (id: string, newName: string, ref: HTMLInputElement) => Promise<boolean>;
+    uploadedFileData?: File;
+    setUploadedFileData: (file?: File) => void;
+}
+declare const useFileManager: () => FileManagerContextType;
+
 type FileSystemType = FileType[];
 
-export { FileSystemType, FileType, IFileManagerProps, ReactFileManager, ViewStyle };
+export { FileSystemType, FileType, IFileManagerProps, ReactFileManager, ViewStyle, useFileManager };

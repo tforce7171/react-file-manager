@@ -709,5 +709,6 @@ var ReactFileManager = ({
 };
 export {
   ReactFileManager,
-  ViewStyle
+  ViewStyle,
+  useFileManager
 };
