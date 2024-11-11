@@ -1,7 +1,7 @@
 {
   "name": "@tforce7171/react-file-manager",
   "description": "A simple React component to build a Web File Manager",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
