@@ -286,7 +286,7 @@ React File Manager | MIT License | https://github.com/thelicato/react-file-manag
     @apply bg-sky-100;
   }
   .rfm-workspace-file-listing {
-    @apply flex flex-wrap gap-4;
+    @apply flex flex-wrap gap-4 max-h-[60vh];
   }
 
   /* FileManager */

@@ -5,16 +5,100 @@ React File Manager | MIT License | https://github.com/thelicato/react-file-manag
 /* @tailwind base;
 @tailwind components; */
 
+.relative {
+  position: relative
+}
+
+.flex {
+  display: flex
+}
+
 .table {
   display: table
+}
+
+.h-2 {
+  height: 0.5rem
+}
+
+.h-2\.5 {
+  height: 0.625rem
+}
+
+.h-full {
+  height: 100%
+}
+
+.w-2 {
+  width: 0.5rem
+}
+
+.w-2\.5 {
+  width: 0.625rem
 }
 
 .w-full {
   width: 100%
 }
 
+.flex-1 {
+  flex: 1 1 0%
+}
+
+.touch-none {
+  touch-action: none
+}
+
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none
+}
+
+.flex-col {
+  flex-direction: column
+}
+
+.overflow-hidden {
+  overflow: hidden
+}
+
+.rounded-\[inherit\] {
+  border-radius: inherit
+}
+
+.rounded-full {
+  border-radius: 9999px
+}
+
+.border-l {
+  border-left-width: 1px
+}
+
+.border-t {
+  border-top-width: 1px
+}
+
+.border-l-transparent {
+  border-left-color: transparent
+}
+
+.border-t-transparent {
+  border-top-color: transparent
+}
+
+.p-\[1px\] {
+  padding: 1px
+}
+
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms
 }
 
 /* CommonModal */
@@ -605,6 +689,7 @@ React File Manager | MIT License | https://github.com/thelicato/react-file-manag
 
 .rfm-workspace-file-listing {
   display: flex;
+  max-height: 60vh;
   flex-wrap: wrap;
   gap: 1rem
 }

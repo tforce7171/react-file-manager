@@ -49,7 +49,7 @@ const RenameItemModal: React.FC<RenameItemModalProps> = ({
               placeholder={itemName}
               required
               autoFocus
-              onChange={(event)=>setItemNameLength(event.target.value.length)}
+              onChange={(event) => setItemNameLength(event.target.value.length)}
             />
           </div>
           <button

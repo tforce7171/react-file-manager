@@ -7,6 +7,7 @@ import FolderPath from "./FolderPath";
 import NewFolderModal from "./NewFolderModal";
 import DelItemModal from "./DelItemModal";
 import RenameItemModal from "./RenameItemModal";
+import { ScrollArea } from "./ScrollArea";
 import ManageItemModal from "./ManageItemModal";
 import UploadFileModal from "./UploadFileModal";
 import SvgIcon from "./SvgIcon"
@@ -174,64 +175,66 @@ const Workspace: React.FC = () => {
         {...getRootProps()}
       >
         <FolderPath />
-        <div className="rfm-workspace-file-listing">
-          {viewStyle === "icons" && (
-            <>
-              {currentFolderFiles.map((f) => (
-                <button key={f.id} onDoubleClick={() => handleDoubleClick(f.id)}>
-                  <FileIcon id={f.id} name={f.name} isDir={f.isDir} handleContextMenu={handleContextMenu} />
-                </button>
-              ))}
-              {!viewOnly && <NewFolderIcon onClick={openNewFolderModal} />}
-            </>
-          )}
-          {viewStyle === "list" && (
-            <>
-              <table className="w-full">
-                <thead>
-                  {table.getHeaderGroups().map((headerGroup) => (
-                    <tr key={headerGroup.id}>
-                      {headerGroup.headers.map((header) => (
-                        <th key={header.id} className="rfm-workspace-list-th" onClick={header.column.getToggleSortingHandler()}>
-                          <div className="rfm-workspace-list-th-content">
-                            {flexRender(header.column.columnDef.header, header.getContext())}
-                            {header.column.getIsSorted()
-                              ? header.column.getIsSorted() === "desc"
-                                ? <SvgIcon svgType="arrow-down" className="rfm-header-sort-icon" />
-                                : <SvgIcon svgType="arrow-up" className="rfm-header-sort-icon" />
-                              : ""}
-                          </div>
-                        </th>
-                      ))}
-                    </tr>
-                  ))}
-                </thead>
-                <tbody>
-                  {table.getRowModel().rows.map((row) => (
-                    <tr key={row.id} className="rfm-workspace-list-icon-row">
-                      {row.getVisibleCells().map((cell) => (
-                        <td
-                          key={cell.id}
-                          className="rfm-workspace-list-align-txt"
-                          onClick={() => handleClick(row.original)}
-                          onContextMenu={(event) => handleContextMenu(event, row.original.id, row.original.name)}
-                          onDoubleClick={() => handleDoubleClick(row.original.id)}
-                        >
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              {!viewOnly && (
-                <button className="rfm-workspace-list-add-folder" onClick={openNewFolderModal}>
-                  {labels.addFolderButton}
-                </button>
-              )}
-            </>
-          )}
-        </div>
+        <ScrollArea>
+          <div className="rfm-workspace-file-listing">
+            {viewStyle === "icons" && (
+              <>
+                {currentFolderFiles.map((f) => (
+                  <button key={f.id} onDoubleClick={() => handleDoubleClick(f.id)}>
+                    <FileIcon id={f.id} name={f.name} isDir={f.isDir} handleContextMenu={handleContextMenu} />
+                  </button>
+                ))}
+                {!viewOnly && <NewFolderIcon onClick={openNewFolderModal} />}
+              </>
+            )}
+            {viewStyle === "list" && (
+              <>
+                <table className="w-full">
+                  <thead>
+                    {table.getHeaderGroups().map((headerGroup) => (
+                      <tr key={headerGroup.id}>
+                        {headerGroup.headers.map((header) => (
+                          <th key={header.id} className="rfm-workspace-list-th" onClick={header.column.getToggleSortingHandler()}>
+                            <div className="rfm-workspace-list-th-content">
+                              {flexRender(header.column.columnDef.header, header.getContext())}
+                              {header.column.getIsSorted()
+                                ? header.column.getIsSorted() === "desc"
+                                  ? <SvgIcon svgType="arrow-down" className="rfm-header-sort-icon" />
+                                  : <SvgIcon svgType="arrow-up" className="rfm-header-sort-icon" />
+                                : ""}
+                            </div>
+                          </th>
+                        ))}
+                      </tr>
+                    ))}
+                  </thead>
+                  <tbody>
+                    {table.getRowModel().rows.map((row) => (
+                      <tr key={row.id} className="rfm-workspace-list-icon-row">
+                        {row.getVisibleCells().map((cell) => (
+                          <td
+                            key={cell.id}
+                            className="rfm-workspace-list-align-txt"
+                            onClick={() => handleClick(row.original)}
+                            onContextMenu={(event) => handleContextMenu(event, row.original.id, row.original.name)}
+                            onDoubleClick={() => handleDoubleClick(row.original.id)}
+                          >
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </>
+            )}
+          </div>
+        </ScrollArea>
+        {!viewOnly && (
+          <button className="rfm-workspace-list-add-folder" onClick={openNewFolderModal}>
+            {labels.addFolderButton}
+          </button>
+        )}
       </section>
       {!viewOnly && (
         <>

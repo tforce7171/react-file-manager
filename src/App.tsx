@@ -21,6 +21,78 @@ export const dummyFileSystem: FileSystemType = [
     lastModified: 1704720512
   },
   {
+    id: "41259",
+    name: "Documents2",
+    isDir: true,
+    parentId: "0",
+    path: "/Documents",
+    lastModified: 1704720512
+  },
+  {
+    id: "51259",
+    name: "Documents3",
+    isDir: true,
+    parentId: "0",
+    path: "/Documents",
+    lastModified: 1704720512
+  },
+  {
+    id: "61259",
+    name: "Documents4",
+    isDir: true,
+    parentId: "0",
+    path: "/Documents",
+    lastModified: 1704720512
+  },
+  {
+    id: "61259",
+    name: "Documents4",
+    isDir: true,
+    parentId: "0",
+    path: "/Documents",
+    lastModified: 1704720512
+  },
+  {
+    id: "61259",
+    name: "Documents4",
+    isDir: true,
+    parentId: "0",
+    path: "/Documents",
+    lastModified: 1704720512
+  },
+  {
+    id: "61259",
+    name: "Documents4",
+    isDir: true,
+    parentId: "0",
+    path: "/Documents",
+    lastModified: 1704720512
+  },
+  {
+    id: "61259",
+    name: "Documents4",
+    isDir: true,
+    parentId: "0",
+    path: "/Documents",
+    lastModified: 1704720512
+  },
+  {
+    id: "61259",
+    name: "Documents4",
+    isDir: true,
+    parentId: "0",
+    path: "/Documents",
+    lastModified: 1704720512
+  },
+  {
+    id: "61259",
+    name: "Documents4",
+    isDir: true,
+    parentId: "0",
+    path: "/Documents",
+    lastModified: 1704720512
+  },
+  {
     id: "31261",
     name: "Personal",
     isDir: true,

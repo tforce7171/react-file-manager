@@ -1,5 +1,5 @@
 // lib/ReactFileManager.tsx
-import React13, { useState as useState4 } from "react";
+import React14, { useState as useState4 } from "react";
 
 // lib/components/Navbar.tsx
 import React, { useMemo } from "react";
@@ -58,7 +58,7 @@ var Navbar = () => {
 var Navbar_default = Navbar;
 
 // lib/components/Workspace.tsx
-import React12, { useState as useState3, useMemo as useMemo4, useCallback, useEffect } from "react";
+import React13, { useState as useState3, useMemo as useMemo4, useCallback, useEffect as useEffect2 } from "react";
 import { useDropzone } from "react-dropzone";
 
 // lib/components/FileIcon.tsx
@@ -359,8 +359,94 @@ var RenameItemModal = ({
 };
 var RenameItemModal_default = RenameItemModal;
 
+// lib/components/ScrollArea.tsx
+import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
+import { twMerge } from "tailwind-merge";
+import * as React10 from "react";
+
+// node_modules/clsx/dist/clsx.m.js
+function r(e) {
+  var t, f, n = "";
+  if ("string" == typeof e || "number" == typeof e)
+    n += e;
+  else if ("object" == typeof e)
+    if (Array.isArray(e))
+      for (t = 0; t < e.length; t++)
+        e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
+    else
+      for (t in e)
+        e[t] && (n && (n += " "), n += t);
+  return n;
+}
+function clsx() {
+  for (var e, t, f = 0, n = ""; f < arguments.length; )
+    (e = arguments[f++]) && (t = r(e)) && (n && (n += " "), n += t);
+  return n;
+}
+
+// lib/components/ScrollArea.tsx
+function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
+var ScrollArea = React10.forwardRef(({ className, children, ...props }, ref) => {
+  const scrollRef = React10.useRef(null);
+  React10.useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight ?? 0;
+      }
+    };
+    const scrollElement = scrollRef.current;
+    if (scrollElement) {
+      scrollElement.addEventListener("scroll", handleScroll);
+      scrollElement.addEventListener("touchstart", handleScroll, {
+        passive: false
+      });
+    }
+    return () => {
+      if (scrollElement) {
+        scrollElement.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+  return /* @__PURE__ */ React10.createElement(
+    ScrollAreaPrimitive.Root,
+    {
+      className: cn("relative overflow-hidden", className),
+      ...props
+    },
+    /* @__PURE__ */ React10.createElement(
+      ScrollAreaPrimitive.Viewport,
+      {
+        ref,
+        className: "h-full w-full rounded-[inherit]"
+      },
+      children
+    ),
+    /* @__PURE__ */ React10.createElement(ScrollBar, null),
+    /* @__PURE__ */ React10.createElement(ScrollAreaPrimitive.Corner, null)
+  );
+});
+ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
+var ScrollBar = React10.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ React10.createElement(
+  ScrollAreaPrimitive.Scrollbar,
+  {
+    ref,
+    orientation,
+    className: cn(
+      "flex touch-none select-none transition-colors",
+      orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]",
+      orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-[1px]",
+      className
+    ),
+    ...props
+  },
+  /* @__PURE__ */ React10.createElement(ScrollAreaPrimitive.Thumb, { className: "relative flex-1 rounded-full bg-border" })
+));
+ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
+
 // lib/components/ManageItemModal.tsx
-import React10 from "react";
+import React11 from "react";
 var ManageItemModal = ({
   isVisible,
   onClose,
@@ -369,14 +455,14 @@ var ManageItemModal = ({
   openDelete
 }) => {
   const { labels } = useFileManager();
-  return /* @__PURE__ */ React10.createElement(
+  return /* @__PURE__ */ React11.createElement(
     CommonModal_default,
     {
       title: `${labels.manageTitle} ${itemName || ""}`,
       isVisible,
       onClose
     },
-    /* @__PURE__ */ React10.createElement("div", null, /* @__PURE__ */ React10.createElement("form", { className: "rfm-new-folder-modal-form", onSubmit: (e) => e.preventDefault() }, /* @__PURE__ */ React10.createElement(
+    /* @__PURE__ */ React11.createElement("div", null, /* @__PURE__ */ React11.createElement("form", { className: "rfm-new-folder-modal-form", onSubmit: (e) => e.preventDefault() }, /* @__PURE__ */ React11.createElement(
       "button",
       {
         onClick: () => {
@@ -387,7 +473,7 @@ var ManageItemModal = ({
         className: "rfm-new-folder-modal-btn"
       },
       labels.renameButton
-    ), /* @__PURE__ */ React10.createElement(
+    ), /* @__PURE__ */ React11.createElement(
       "button",
       {
         onClick: () => {
@@ -404,7 +490,7 @@ var ManageItemModal = ({
 var ManageItemModal_default = ManageItemModal;
 
 // lib/components/UploadFileModal.tsx
-import React11 from "react";
+import React12 from "react";
 var UploadFileModal = ({ isVisible, onClose }) => {
   const { labels, onUpload, uploadedFileData, currentFolder } = useFileManager();
   const onConfirm = async () => {
@@ -417,14 +503,14 @@ var UploadFileModal = ({ isVisible, onClose }) => {
       }
     }
   };
-  return /* @__PURE__ */ React11.createElement(
+  return /* @__PURE__ */ React12.createElement(
     CommonModal_default,
     {
       title: labels.uploadTitle,
       isVisible,
       onClose
     },
-    /* @__PURE__ */ React11.createElement("div", null, /* @__PURE__ */ React11.createElement("h4", { className: "rfm-upload-file-modal-title" }, labels.uploadConfirmationMsg), /* @__PURE__ */ React11.createElement("div", { className: "rfm-upload-file-modal-container" }, /* @__PURE__ */ React11.createElement(
+    /* @__PURE__ */ React12.createElement("div", null, /* @__PURE__ */ React12.createElement("h4", { className: "rfm-upload-file-modal-title" }, labels.uploadConfirmationMsg), /* @__PURE__ */ React12.createElement("div", { className: "rfm-upload-file-modal-container" }, /* @__PURE__ */ React12.createElement(
       "button",
       {
         onClick: onConfirm,
@@ -432,7 +518,7 @@ var UploadFileModal = ({ isVisible, onClose }) => {
         className: "rfm-upload-file-modal-btn rfm-upload-file-modal-btn-confirm"
       },
       labels.uploadConfirm
-    ), /* @__PURE__ */ React11.createElement(
+    ), /* @__PURE__ */ React12.createElement(
       "button",
       {
         onClick: onClose,
@@ -451,7 +537,7 @@ var columnHelper = createColumnHelper();
 var columns = [
   columnHelper.accessor("name", {
     header: () => "Name",
-    cell: (info) => /* @__PURE__ */ React12.createElement("div", { className: "rfm-workspace-list-icon-td" }, /* @__PURE__ */ React12.createElement(SvgIcon_default, { svgType: info.row.original.isDir ? "folder" : "file", className: "rfm-workspace-list-icon" }), /* @__PURE__ */ React12.createElement("p", null, info.getValue()))
+    cell: (info) => /* @__PURE__ */ React13.createElement("div", { className: "rfm-workspace-list-icon-td" }, /* @__PURE__ */ React13.createElement(SvgIcon_default, { svgType: info.row.original.isDir ? "folder" : "file", className: "rfm-workspace-list-icon" }), /* @__PURE__ */ React13.createElement("p", null, info.getValue()))
   }),
   columnHelper.accessor("lastModified", {
     header: () => "Last Modified",
@@ -485,7 +571,7 @@ var Workspace = () => {
       setUploadFileModalVisible(value);
     }
   };
-  useEffect(() => {
+  useEffect2(() => {
     if (newFolderModalVisible) {
       setNewFolderModalVisible(false);
     }
@@ -573,15 +659,15 @@ var Workspace = () => {
     setNewFolderModalVisible(false);
     openManageItemModal({ id: fileId, name: fileName });
   };
-  return /* @__PURE__ */ React12.createElement("div", { className: "rfm-workspace" }, /* @__PURE__ */ React12.createElement(
+  return /* @__PURE__ */ React13.createElement("div", { className: "rfm-workspace" }, /* @__PURE__ */ React13.createElement(
     "section",
     {
       id: "react-file-manager-workspace",
       className: `rfm-workspace ${isDragAccept && !viewOnly ? "rfm-workspace-dropzone" : ""}`,
       ...getRootProps()
     },
-    /* @__PURE__ */ React12.createElement(FolderPath_default, null),
-    /* @__PURE__ */ React12.createElement("div", { className: "rfm-workspace-file-listing" }, viewStyle === "icons" && /* @__PURE__ */ React12.createElement(React12.Fragment, null, currentFolderFiles.map((f) => /* @__PURE__ */ React12.createElement("button", { key: f.id, onDoubleClick: () => handleDoubleClick(f.id) }, /* @__PURE__ */ React12.createElement(FileIcon_default, { id: f.id, name: f.name, isDir: f.isDir, handleContextMenu }))), !viewOnly && /* @__PURE__ */ React12.createElement(NewFolderIcon_default, { onClick: openNewFolderModal })), viewStyle === "list" && /* @__PURE__ */ React12.createElement(React12.Fragment, null, /* @__PURE__ */ React12.createElement("table", { className: "w-full" }, /* @__PURE__ */ React12.createElement("thead", null, table.getHeaderGroups().map((headerGroup) => /* @__PURE__ */ React12.createElement("tr", { key: headerGroup.id }, headerGroup.headers.map((header) => /* @__PURE__ */ React12.createElement("th", { key: header.id, className: "rfm-workspace-list-th", onClick: header.column.getToggleSortingHandler() }, /* @__PURE__ */ React12.createElement("div", { className: "rfm-workspace-list-th-content" }, flexRender(header.column.columnDef.header, header.getContext()), header.column.getIsSorted() ? header.column.getIsSorted() === "desc" ? /* @__PURE__ */ React12.createElement(SvgIcon_default, { svgType: "arrow-down", className: "rfm-header-sort-icon" }) : /* @__PURE__ */ React12.createElement(SvgIcon_default, { svgType: "arrow-up", className: "rfm-header-sort-icon" }) : "")))))), /* @__PURE__ */ React12.createElement("tbody", null, table.getRowModel().rows.map((row) => /* @__PURE__ */ React12.createElement("tr", { key: row.id, className: "rfm-workspace-list-icon-row" }, row.getVisibleCells().map((cell) => /* @__PURE__ */ React12.createElement(
+    /* @__PURE__ */ React13.createElement(FolderPath_default, null),
+    /* @__PURE__ */ React13.createElement(ScrollArea, null, /* @__PURE__ */ React13.createElement("div", { className: "rfm-workspace-file-listing" }, viewStyle === "icons" && /* @__PURE__ */ React13.createElement(React13.Fragment, null, currentFolderFiles.map((f) => /* @__PURE__ */ React13.createElement("button", { key: f.id, onDoubleClick: () => handleDoubleClick(f.id) }, /* @__PURE__ */ React13.createElement(FileIcon_default, { id: f.id, name: f.name, isDir: f.isDir, handleContextMenu }))), !viewOnly && /* @__PURE__ */ React13.createElement(NewFolderIcon_default, { onClick: openNewFolderModal })), viewStyle === "list" && /* @__PURE__ */ React13.createElement(React13.Fragment, null, /* @__PURE__ */ React13.createElement("table", { className: "w-full" }, /* @__PURE__ */ React13.createElement("thead", null, table.getHeaderGroups().map((headerGroup) => /* @__PURE__ */ React13.createElement("tr", { key: headerGroup.id }, headerGroup.headers.map((header) => /* @__PURE__ */ React13.createElement("th", { key: header.id, className: "rfm-workspace-list-th", onClick: header.column.getToggleSortingHandler() }, /* @__PURE__ */ React13.createElement("div", { className: "rfm-workspace-list-th-content" }, flexRender(header.column.columnDef.header, header.getContext()), header.column.getIsSorted() ? header.column.getIsSorted() === "desc" ? /* @__PURE__ */ React13.createElement(SvgIcon_default, { svgType: "arrow-down", className: "rfm-header-sort-icon" }) : /* @__PURE__ */ React13.createElement(SvgIcon_default, { svgType: "arrow-up", className: "rfm-header-sort-icon" }) : "")))))), /* @__PURE__ */ React13.createElement("tbody", null, table.getRowModel().rows.map((row) => /* @__PURE__ */ React13.createElement("tr", { key: row.id, className: "rfm-workspace-list-icon-row" }, row.getVisibleCells().map((cell) => /* @__PURE__ */ React13.createElement(
       "td",
       {
         key: cell.id,
@@ -591,14 +677,15 @@ var Workspace = () => {
         onDoubleClick: () => handleDoubleClick(row.original.id)
       },
       flexRender(cell.column.columnDef.cell, cell.getContext())
-    )))))), !viewOnly && /* @__PURE__ */ React12.createElement("button", { className: "rfm-workspace-list-add-folder", onClick: openNewFolderModal }, labels.addFolderButton)))
-  ), !viewOnly && /* @__PURE__ */ React12.createElement(React12.Fragment, null, /* @__PURE__ */ React12.createElement(
+    ))))))))),
+    !viewOnly && /* @__PURE__ */ React13.createElement("button", { className: "rfm-workspace-list-add-folder", onClick: openNewFolderModal }, labels.addFolderButton)
+  ), !viewOnly && /* @__PURE__ */ React13.createElement(React13.Fragment, null, /* @__PURE__ */ React13.createElement(
     NewFolderModal_default,
     {
       isVisible: newFolderModalVisible,
       onClose: () => setNewFolderModalVisible(false)
     }
-  ), /* @__PURE__ */ React12.createElement(
+  ), /* @__PURE__ */ React13.createElement(
     DelItemModal_default,
     {
       itemName: toDeleteItem?.name,
@@ -606,7 +693,7 @@ var Workspace = () => {
       isVisible: !!toDeleteItem,
       onClose: () => setToDeleteItem(null)
     }
-  ), /* @__PURE__ */ React12.createElement(
+  ), /* @__PURE__ */ React13.createElement(
     RenameItemModal_default,
     {
       itemName: toRenameItem?.name,
@@ -614,7 +701,7 @@ var Workspace = () => {
       isVisible: !!toRenameItem,
       onClose: () => setToRenameItem(null)
     }
-  ), /* @__PURE__ */ React12.createElement(
+  ), /* @__PURE__ */ React13.createElement(
     ManageItemModal_default,
     {
       itemName: toManageItem?.name,
@@ -631,7 +718,7 @@ var Workspace = () => {
       },
       onClose: () => setToManageItem(null)
     }
-  ), /* @__PURE__ */ React12.createElement(
+  ), /* @__PURE__ */ React13.createElement(
     UploadFileModal_default,
     {
       isVisible: uploadFileModalVisible,
@@ -683,7 +770,7 @@ var ReactFileManager = ({
     cancel: "Cancel"
   };
   const chosenLabels = { ...defaultLabels, ...labels };
-  return /* @__PURE__ */ React13.createElement(
+  return /* @__PURE__ */ React14.createElement(
     FileManagerContext.Provider,
     {
       value: {
@@ -704,7 +791,7 @@ var ReactFileManager = ({
         setUploadedFileData
       }
     },
-    /* @__PURE__ */ React13.createElement("div", { className: "rfm-main-container" }, /* @__PURE__ */ React13.createElement(Navbar_default, null), /* @__PURE__ */ React13.createElement(Workspace_default, null))
+    /* @__PURE__ */ React14.createElement("div", { className: "rfm-main-container" }, /* @__PURE__ */ React14.createElement(Navbar_default, null), /* @__PURE__ */ React14.createElement(Workspace_default, null))
   );
 };
 export {

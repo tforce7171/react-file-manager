@@ -397,6 +397,92 @@ var RenameItemModal = ({
 };
 var RenameItemModal_default = RenameItemModal;
 
+// lib/components/ScrollArea.tsx
+var ScrollAreaPrimitive = __toESM(require("@radix-ui/react-scroll-area"), 1);
+var import_tailwind_merge = require("tailwind-merge");
+var React10 = __toESM(require("react"), 1);
+
+// node_modules/clsx/dist/clsx.m.js
+function r(e) {
+  var t, f, n = "";
+  if ("string" == typeof e || "number" == typeof e)
+    n += e;
+  else if ("object" == typeof e)
+    if (Array.isArray(e))
+      for (t = 0; t < e.length; t++)
+        e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
+    else
+      for (t in e)
+        e[t] && (n && (n += " "), n += t);
+  return n;
+}
+function clsx() {
+  for (var e, t, f = 0, n = ""; f < arguments.length; )
+    (e = arguments[f++]) && (t = r(e)) && (n && (n += " "), n += t);
+  return n;
+}
+
+// lib/components/ScrollArea.tsx
+function cn(...inputs) {
+  return (0, import_tailwind_merge.twMerge)(clsx(inputs));
+}
+var ScrollArea = React10.forwardRef(({ className, children, ...props }, ref) => {
+  const scrollRef = React10.useRef(null);
+  React10.useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight ?? 0;
+      }
+    };
+    const scrollElement = scrollRef.current;
+    if (scrollElement) {
+      scrollElement.addEventListener("scroll", handleScroll);
+      scrollElement.addEventListener("touchstart", handleScroll, {
+        passive: false
+      });
+    }
+    return () => {
+      if (scrollElement) {
+        scrollElement.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+  return /* @__PURE__ */ React10.createElement(
+    ScrollAreaPrimitive.Root,
+    {
+      className: cn("relative overflow-hidden", className),
+      ...props
+    },
+    /* @__PURE__ */ React10.createElement(
+      ScrollAreaPrimitive.Viewport,
+      {
+        ref,
+        className: "h-full w-full rounded-[inherit]"
+      },
+      children
+    ),
+    /* @__PURE__ */ React10.createElement(ScrollBar, null),
+    /* @__PURE__ */ React10.createElement(ScrollAreaPrimitive.Corner, null)
+  );
+});
+ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
+var ScrollBar = React10.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ React10.createElement(
+  ScrollAreaPrimitive.Scrollbar,
+  {
+    ref,
+    orientation,
+    className: cn(
+      "flex touch-none select-none transition-colors",
+      orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]",
+      orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-[1px]",
+      className
+    ),
+    ...props
+  },
+  /* @__PURE__ */ React10.createElement(ScrollAreaPrimitive.Thumb, { className: "relative flex-1 rounded-full bg-border" })
+));
+ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
+
 // lib/components/ManageItemModal.tsx
 var import_react11 = __toESM(require("react"), 1);
 var ManageItemModal = ({
@@ -619,7 +705,7 @@ var Workspace = () => {
       ...getRootProps()
     },
     /* @__PURE__ */ import_react13.default.createElement(FolderPath_default, null),
-    /* @__PURE__ */ import_react13.default.createElement("div", { className: "rfm-workspace-file-listing" }, viewStyle === "icons" && /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, currentFolderFiles.map((f) => /* @__PURE__ */ import_react13.default.createElement("button", { key: f.id, onDoubleClick: () => handleDoubleClick(f.id) }, /* @__PURE__ */ import_react13.default.createElement(FileIcon_default, { id: f.id, name: f.name, isDir: f.isDir, handleContextMenu }))), !viewOnly && /* @__PURE__ */ import_react13.default.createElement(NewFolderIcon_default, { onClick: openNewFolderModal })), viewStyle === "list" && /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, /* @__PURE__ */ import_react13.default.createElement("table", { className: "w-full" }, /* @__PURE__ */ import_react13.default.createElement("thead", null, table.getHeaderGroups().map((headerGroup) => /* @__PURE__ */ import_react13.default.createElement("tr", { key: headerGroup.id }, headerGroup.headers.map((header) => /* @__PURE__ */ import_react13.default.createElement("th", { key: header.id, className: "rfm-workspace-list-th", onClick: header.column.getToggleSortingHandler() }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "rfm-workspace-list-th-content" }, (0, import_react_table.flexRender)(header.column.columnDef.header, header.getContext()), header.column.getIsSorted() ? header.column.getIsSorted() === "desc" ? /* @__PURE__ */ import_react13.default.createElement(SvgIcon_default, { svgType: "arrow-down", className: "rfm-header-sort-icon" }) : /* @__PURE__ */ import_react13.default.createElement(SvgIcon_default, { svgType: "arrow-up", className: "rfm-header-sort-icon" }) : "")))))), /* @__PURE__ */ import_react13.default.createElement("tbody", null, table.getRowModel().rows.map((row) => /* @__PURE__ */ import_react13.default.createElement("tr", { key: row.id, className: "rfm-workspace-list-icon-row" }, row.getVisibleCells().map((cell) => /* @__PURE__ */ import_react13.default.createElement(
+    /* @__PURE__ */ import_react13.default.createElement(ScrollArea, null, /* @__PURE__ */ import_react13.default.createElement("div", { className: "rfm-workspace-file-listing" }, viewStyle === "icons" && /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, currentFolderFiles.map((f) => /* @__PURE__ */ import_react13.default.createElement("button", { key: f.id, onDoubleClick: () => handleDoubleClick(f.id) }, /* @__PURE__ */ import_react13.default.createElement(FileIcon_default, { id: f.id, name: f.name, isDir: f.isDir, handleContextMenu }))), !viewOnly && /* @__PURE__ */ import_react13.default.createElement(NewFolderIcon_default, { onClick: openNewFolderModal })), viewStyle === "list" && /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, /* @__PURE__ */ import_react13.default.createElement("table", { className: "w-full" }, /* @__PURE__ */ import_react13.default.createElement("thead", null, table.getHeaderGroups().map((headerGroup) => /* @__PURE__ */ import_react13.default.createElement("tr", { key: headerGroup.id }, headerGroup.headers.map((header) => /* @__PURE__ */ import_react13.default.createElement("th", { key: header.id, className: "rfm-workspace-list-th", onClick: header.column.getToggleSortingHandler() }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "rfm-workspace-list-th-content" }, (0, import_react_table.flexRender)(header.column.columnDef.header, header.getContext()), header.column.getIsSorted() ? header.column.getIsSorted() === "desc" ? /* @__PURE__ */ import_react13.default.createElement(SvgIcon_default, { svgType: "arrow-down", className: "rfm-header-sort-icon" }) : /* @__PURE__ */ import_react13.default.createElement(SvgIcon_default, { svgType: "arrow-up", className: "rfm-header-sort-icon" }) : "")))))), /* @__PURE__ */ import_react13.default.createElement("tbody", null, table.getRowModel().rows.map((row) => /* @__PURE__ */ import_react13.default.createElement("tr", { key: row.id, className: "rfm-workspace-list-icon-row" }, row.getVisibleCells().map((cell) => /* @__PURE__ */ import_react13.default.createElement(
       "td",
       {
         key: cell.id,
@@ -629,7 +715,8 @@ var Workspace = () => {
         onDoubleClick: () => handleDoubleClick(row.original.id)
       },
       (0, import_react_table.flexRender)(cell.column.columnDef.cell, cell.getContext())
-    )))))), !viewOnly && /* @__PURE__ */ import_react13.default.createElement("button", { className: "rfm-workspace-list-add-folder", onClick: openNewFolderModal }, labels.addFolderButton)))
+    ))))))))),
+    !viewOnly && /* @__PURE__ */ import_react13.default.createElement("button", { className: "rfm-workspace-list-add-folder", onClick: openNewFolderModal }, labels.addFolderButton)
   ), !viewOnly && /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, /* @__PURE__ */ import_react13.default.createElement(
     NewFolderModal_default,
     {
