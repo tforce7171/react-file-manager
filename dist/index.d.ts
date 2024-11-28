@@ -49,7 +49,7 @@ interface IFileManagerProps {
     viewOnly?: boolean;
     onDoubleClick?: (id: string) => void;
     onRefresh?: (id: string) => Promise<void>;
-    onUpload?: (file: File, folderId: string) => Promise<boolean>;
+    onUpload?: (file: File[], folderId: string) => Promise<boolean>;
     onCreateFolder?: (name: string, ref: HTMLInputElement) => Promise<boolean>;
     onDelete?: (id: string) => void;
     onRename?: (id: string, newName: string, ref: HTMLInputElement) => Promise<boolean>;
@@ -72,12 +72,12 @@ interface FileManagerContextType {
     setCurrentFolder: (folderId: string) => void;
     onDoubleClick?: (id: string) => void;
     onRefresh?: (id: string) => Promise<void>;
-    onUpload?: (file: File, folderId: string) => Promise<boolean>;
+    onUpload?: (file: File[], folderId: string) => Promise<boolean>;
     onCreateFolder?: (name: string, ref: HTMLInputElement) => Promise<boolean>;
     onDelete?: (id: string) => void;
     onRename?: (id: string, newName: string, ref: HTMLInputElement) => Promise<boolean>;
-    uploadedFileData?: File;
-    setUploadedFileData: (file?: File) => void;
+    uploadedFileData?: File[];
+    setUploadedFileData: (file?: File[]) => void;
 }
 declare const useFileManager: () => FileManagerContextType;
 

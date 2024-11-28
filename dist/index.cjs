@@ -629,8 +629,7 @@ var Workspace = () => {
   }, [currentFolder]);
   const onDrop = (0, import_react13.useCallback)(
     (acceptedFiles) => {
-      const file = acceptedFiles[0];
-      setUploadedFileData(file);
+      setUploadedFileData(acceptedFiles);
       setUploadModalVisible(true);
     },
     [setUploadedFileData]

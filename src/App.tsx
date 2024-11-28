@@ -182,9 +182,10 @@ function App() {
   };
 
 
-  const dummyUpload = async (uploadedFileData: File, currentFolder: string): Promise<boolean> => {
+  const dummyUpload = async (uploadedFileData: File[], currentFolder: string): Promise<boolean> => {
     // Simulating a file upload
-    console.log(`Uploading file: ${uploadedFileData} to folder: ${currentFolder}`);
+    console.log(currentFolder)
+    console.log(uploadedFileData);
     await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulating upload delay
     return true;
   };

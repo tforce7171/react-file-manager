@@ -87,8 +87,7 @@ const Workspace: React.FC = () => {
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      const file = acceptedFiles[0];
-      setUploadedFileData(file);
+      setUploadedFileData(acceptedFiles);
       setUploadModalVisible(true);
     },
     [setUploadedFileData]

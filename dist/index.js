@@ -591,8 +591,7 @@ var Workspace = () => {
   }, [currentFolder]);
   const onDrop = useCallback(
     (acceptedFiles) => {
-      const file = acceptedFiles[0];
-      setUploadedFileData(file);
+      setUploadedFileData(acceptedFiles);
       setUploadModalVisible(true);
     },
     [setUploadedFileData]

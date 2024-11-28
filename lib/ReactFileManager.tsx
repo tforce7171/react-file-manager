@@ -10,7 +10,7 @@ interface IFileManagerProps {
   viewOnly?: boolean;
   onDoubleClick?: (id: string) => void;
   onRefresh?: (id: string) => Promise<void>;
-  onUpload?: (file: File, folderId: string) => Promise<boolean>;
+  onUpload?: (file: File[], folderId: string) => Promise<boolean>;
   onCreateFolder?: (name: string, ref: HTMLInputElement) => Promise<boolean>;
   onDelete?: (id: string) => void;
   onRename?: (id: string, newName: string, ref: HTMLInputElement) => Promise<boolean>;
@@ -29,7 +29,7 @@ const ReactFileManager: React.FC<IFileManagerProps> = ({
   labels,
 }) => {
   const [currentFolder, setCurrentFolder] = useState<string>("0");
-  const [uploadedFileData, setUploadedFileData] = useState<File | undefined>();
+  const [uploadedFileData, setUploadedFileData] = useState<File[] | undefined>();
   const [viewStyle, setViewStyle] = useState<ViewStyle>(ViewStyle.List);
 
   const defaultLabels: Labels = {
