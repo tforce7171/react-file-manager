@@ -102,6 +102,7 @@ const Workspace: React.FC = () => {
     noClick: true,
     noKeyboard: true,
     onDrop,
+    multiple: true,
   });
 
   const currentFolderFiles = useMemo(() => {

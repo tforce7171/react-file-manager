@@ -603,7 +603,8 @@ var Workspace = () => {
   const { getRootProps, isDragAccept } = useDropzone({
     noClick: true,
     noKeyboard: true,
-    onDrop
+    onDrop,
+    multiple: true
   });
   const currentFolderFiles = useMemo4(() => {
     const files = fs.filter((f) => "parentId" in f && f.parentId === currentFolder);

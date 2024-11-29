@@ -641,7 +641,8 @@ var Workspace = () => {
   const { getRootProps, isDragAccept } = (0, import_react_dropzone.useDropzone)({
     noClick: true,
     noKeyboard: true,
-    onDrop
+    onDrop,
+    multiple: true
   });
   const currentFolderFiles = (0, import_react13.useMemo)(() => {
     const files = fs.filter((f) => "parentId" in f && f.parentId === currentFolder);
